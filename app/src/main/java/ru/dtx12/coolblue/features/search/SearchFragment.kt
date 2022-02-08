@@ -26,10 +26,6 @@ class SearchFragment : Fragment() {
 
     private val viewModel: SearchViewModel by viewModels()
 
-    private val adapter by lazy {
-        SearchAdapter(viewLifecycleOwner)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -37,6 +33,7 @@ class SearchFragment : Fragment() {
     ): View {
         val binding = FragmentSearchBinding.inflate(inflater, container, false)
         val isTablet = resources.getBoolean(R.bool.is_tablet)
+        val adapter = SearchAdapter(viewLifecycleOwner)
         binding.executeAfter {
             this.productsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
