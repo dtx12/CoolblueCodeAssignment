@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="product"
+            type="ru.dtx12.coolblue.core.domain.models.Product" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cbChoiceTitleTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginTop="@dimen/small_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:text="@{product.coolbluesChoiceInformationTitle}"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Our choice for most advanced Apple Watch with a large screen" />
+
+        <View
+            android:id="@+id/cbChoiceTitleDividerView"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginTop="@dimen/small_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:alpha="0.1"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/cbChoiceTitleTextView" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/cbChoiceGroup"
+            visibleIfNotNull="@{product.coolbluesChoiceInformationTitle}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="cbChoiceTitleDividerView,cbChoiceTitleTextView" />
+
+        <ImageView
+            android:id="@+id/productImageView"
+            loadImageByUrl="@{product.productImage}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_margin="@dimen/default_margins"
+            android:scaleType="centerInside"
+            app:layout_constraintHeight_percent="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cbChoiceTitleDividerView"
+            app:layout_constraintWidth_percent="0.3"
+            tools:ignore="ContentDescription" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/productNameTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:text="@{product.productName}"
+            android:textColor="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/productImageView"
+            app:layout_constraintTop_toTopOf="@+id/productImageView"
+            tools:text="Apple Watch Series 7" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/reviewsRatingBar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            reviewsRating="@{product.reviewInformation.reviewSummary}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            app:layout_constraintStart_toStartOf="@+id/productNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTextView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/reviewsCountTextView"
+            reviewsCount="@{product.reviewInformation.reviewSummary}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/small_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/reviewsRatingBar"
+            app:layout_constraintTop_toBottomOf="@+id/productNameTextView"
+            tools:text="11 reviews" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/descriptionTextView"
+            productDescription="@{product.description}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/productNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/reviewsRatingBar"
+            tools:text="Optical heart rate sensor" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/priceTextView"
+            productPrice="@{product}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/very_large_margins"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="@+id/descriptionTextView"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+            tools:text="105.98" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/nextDayDeliveryTextView"
+            visibleIfTrue="@{product.nextDayDelivery}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:text="@string/search_product_can_be_delivered_tomorrow"
+            android:textColor="@color/teal_700"
+            app:drawableStartCompat="@drawable/outline_check_circle_24"
+            app:drawableTint="@color/teal_700"
+            app:layout_constraintStart_toStartOf="@+id/priceTextView"
+            app:layout_constraintTop_toBottomOf="@+id/priceTextView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/promoTextView"
+            productPromo="@{product.promoIcon}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="@+id/productImageView"
+            app:layout_constraintStart_toStartOf="@+id/productImageView"
+            app:layout_constraintTop_toBottomOf="@+id/nextDayDeliveryTextView"
+            tools:text="CoolBlue's choice" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/default_margins"
+            android:layout_marginTop="@dimen/default_margins"
+            android:layout_marginEnd="@dimen/default_margins"
+            android:alpha="0.1"
+            android:background="@color/black"
+            app:layout_constraintTop_toBottomOf="@+id/promoTextView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

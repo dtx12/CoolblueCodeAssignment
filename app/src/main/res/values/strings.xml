@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">CoolBlue Code Assignment</string>
+    <string name="search_product_can_be_delivered_tomorrow">Delivered tomorrow</string>
+    <string name="search_loading_error">An error occurred during loading the products</string>
+    <string name="search_cb_choice">Coolblue\'s Choice</string>
+    <string name="search_promotion">promotion</string>
+    <string name="search_no_internet_connection_error">No internet connection detected</string>
+    <plurals name="reviews_count">
+        <item quantity="one">%1$d review</item>
+        <item quantity="other">%1$d reviews</item>
+    </plurals>
+</resources>
