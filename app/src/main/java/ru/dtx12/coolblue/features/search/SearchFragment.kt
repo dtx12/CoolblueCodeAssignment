@@ -19,6 +19,7 @@ import ru.dtx12.coolblue.R
 import ru.dtx12.coolblue.core.OneTimeEvent
 import ru.dtx12.coolblue.core.exceptions.NoInternetException
 import ru.dtx12.coolblue.core.extensions.executeAfter
+import ru.dtx12.coolblue.core.extensions.hideKeyboard
 import ru.dtx12.coolblue.databinding.FragmentSearchBinding
 
 @AndroidEntryPoint
@@ -38,6 +39,8 @@ class SearchFragment : Fragment() {
             this.productsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
                     viewModel.searchForProducts(query)
+                    requireActivity().hideKeyboard()
+                    productsSearchView.clearFocus()
                     return true
                 }
 
