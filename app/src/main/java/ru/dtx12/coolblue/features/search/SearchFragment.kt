@@ -38,7 +38,6 @@ class SearchFragment : Fragment() {
         binding.executeAfter {
             this.productsSearchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String): Boolean {
-                    viewModel.searchForProducts(query)
                     requireActivity().hideKeyboard()
                     productsSearchView.clearFocus()
                     return true
